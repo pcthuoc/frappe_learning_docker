@@ -1,0 +1,6 @@
+[submodule "repo/apps/frappe"]
+	path = repo/apps/frappe
+	url = https://github.com/frappe/frappe.git
+[submodule "repo/apps/lms"]
+	path = repo/apps/lms
+	url = https://github.com/frappe/lms.git
