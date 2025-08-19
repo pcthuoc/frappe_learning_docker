@@ -1,6 +1,9 @@
 [submodule "repo/apps/frappe"]
 	path = repo/apps/frappe
-	url = https://github.com/frappe/frappe.git
+	url = https://github.com/pcthuoc/frappe_gold_edu.git
 [submodule "repo/apps/lms"]
 	path = repo/apps/lms
-	url = https://github.com/frappe/lms.git
+	url = https://github.com/pcthuoc/lms_gold_edu.git
+[submodule "repo/bench"]
+	path = repo/bench
+	url = https://github.com/pcthuoc/bench_gold_edu.git

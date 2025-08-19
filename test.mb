@@ -1,0 +1,11 @@
+my-lms-project/
+
+│   base/
+│   │   ├── Dockerfile         ← Custom base image có sẵn bench
+│   │   └── init.sh            ← Tự động tạo site + install app
+│   databasse/  ánh xạn tự động từ maria 
+├── frappe-bench/              
+│   ├── apps/
+│   │   ├── frappe/            ← Framework tải từ github tôi về
+│   │   └── lms/               tương tự
+    docker compsse.yml 

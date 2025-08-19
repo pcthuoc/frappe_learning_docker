@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  mariadb:
+    image: mariadb:10.8
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+      - --skip-innodb-read-only-compressed # Temporary fix for MariaDB 10.6
+    env_file: [environment/site.env]
+
+    volumes:
+      - mariadb-data:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: unless-stopped
+    networks:
+      - frappe-network
+
+  base:
+    build:
+      context: .
+      dockerfile: ./base/Dockerfile
+    image: ninjaclasher/dmoj-base
+    restart: unless-stopped
+    networks:
+      - frappe-network
+
+    environment:
+      - NVM_DIR=/home/frappe/.nvm
+    env_file: [environment/site.env]
+
+  # frappe:
+  #   build:
+  #     context: .
+  #     dockerfile: ./site/Dockerfile
+  #   volumes:
+  #     - ./frappe-bench:/home/frappe/frappe-bench
+  #     - ./frappe-bench/apps:/home/frappe/frappe-bench/apps
+  #   ports:
+  #     - 8000:8000
+  #     - 9000:9000
+  #   depends_on:
+  #     - mariadb
+  #     - redis
+  #   command: ["tail", "-f", "/dev/null"]
+  #   environment:
+  #     - SHELL=/bin/bash
+  #   env_file: [environment/site.env]
+  #   networks:
+  #     - frappe-network
+
+volumes:
+  mariadb-data:
+
+networks:
+  frappe-network:
